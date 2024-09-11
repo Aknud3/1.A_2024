@@ -1,12 +1,15 @@
-"""Importing os for cleaning terminal"""
+"""Importing os and platform for cleaning terminal"""
 
 import os
+import platform
 
 
 def clear():
-    """clearing terminal"""
-    os.system("cls")  # windows
-    os.system("clear")  # linux
+    """clearing terminal"""   
+    if platform.system() == "Windows":
+        os.system("cls")
+    else:
+        os.system("clear")
 
 
 class Game:
@@ -65,55 +68,61 @@ class Game:
         answer = self.pick_a_choice("a", "b", "c")
         self.next_dialogue()
         return answer
+
     # https://www.reddit.com/r/Classof09Game/comments/17uta4i/class_of_09_reup_game_endings_guide/
-    # this is the inspiration for this, and the tree works from left is A and right is C middle option is B
+    # this is the inspiration for this, A left, C right, B middle
     # Main 3 routes
+
     def route_a(self):
-        print("a")
+        """this is the first road"""
+        answer = self.pick_a_choice("a", "b", "c")
+        self.next_dialogue()
+        return answer
 
     def route_b(self):
-        print("b")
+        """second main road"""
 
     def route_c(self):
-        print("c")
+        """third main road"""
 
     # Sub routes of 3 main routes
     def route_a_a(self):
-        pass
+        """first part of main road a"""
+        print("haha")
 
     def route_a_b(self):
-        pass
+        """second part of main road a"""
 
     def route_b_a(self):
-        pass
+        """first part of main road b"""
 
     def route_b_b(self):
-        pass
+        """second part of main road b"""
 
     def route_c_a(self):
-        pass
+        """first part of main road c"""
 
     def route_c_b(self):
-        pass
+        """second part of main road c"""
 
     # Sub routes of sub routes
     def route_a_a_a(self):
-        pass
+        """first part of first part of main road a"""
 
     def route_a_a_b(self):
-        pass
+        """second part of first part of main road a"""
 
     def route_c_a_a(self):
-        pass
+        """first part of first part of main road c"""
 
     def route_c_a_b(self):
-        pass
+        """second part of first part of main road c"""
 
     def route_c_b_a(self):
-        pass
+        """first part of second part of main road c"""
 
     def route_c_b_b(self):
-        pass
+        """second part of second part of main road c"""
 
 
 # There is the start of the program
@@ -124,8 +133,24 @@ game.starting_credits()
 game.start_of_game()
 answer1 = game.first_choice()
 
-for option in ("a","b","c"):
-    if answer1 == option:
-        method_name = f"route_{option}"
-        method = getattr(game, method_name, None)
-        method()
+# Still waiting for 1 big loop
+
+for option1 in ("a", "b", "c"):
+    if answer1 == option1:
+        route_name1 = f"route_{option1}"
+        route = getattr(game, route_name1, None)
+        answer2 = route()
+        break
+
+for option2 in ("a", "b", "c"):
+    if answer2 == option2:
+        route_name2 = f"{route_name1}_{option2}"
+        route2 = getattr(game, route_name2, None)
+        answer3 = route2()
+        break
+
+for option3 in ("a", "b", "c"):
+    if answer3 == option3:
+        route_name3 = f"{route_name2}_{option3}"
+        route3 = getattr(game, route_name3, None)
+        route3()
