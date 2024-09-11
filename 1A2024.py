@@ -5,7 +5,7 @@ import platform
 
 
 def clear():
-    """clearing terminal"""   
+    """clearing terminal"""
     if platform.system() == "Windows":
         os.system("cls")
     else:
@@ -133,8 +133,27 @@ game.starting_credits()
 game.start_of_game()
 answer1 = game.first_choice()
 
-# Still waiting for 1 big loop
+options = ["", "", ""]
+answers =["", "", ""]
+routes =["", "", ""]
+route_names = ["", "", ""]
 
+
+""" Big loop that needs to be tested
+for i in range(3):
+    for options[i] in ("a", "b", "c"):
+        if answers[i] == options[i]:
+            if i == 0:
+                route_names[i] = f"route_{options[i]}"
+                routes[i] = getattr(game, route_names[i], None)
+                answers[i+1] = routes[i]()
+            else:
+                route_names[i] = f"{route_names[i-1]}_{options[i]}"
+                routes[i] = getattr(game, route_names[i], None)
+                answers[i+1] = routes[i]()
+"""                
+# working version of logic
+        
 for option1 in ("a", "b", "c"):
     if answer1 == option1:
         route_name1 = f"route_{option1}"
